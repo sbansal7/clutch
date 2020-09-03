@@ -10,8 +10,7 @@ import "validate/validate.proto";
 
 option go_package = "experimentationv1";
 
-message Experiment {
-  fixed64 id = 1;
+message ExperimentParams {
 
   // The experiment configuration specific to the type of experiment
   google.protobuf.Any config = 2;
@@ -23,16 +22,10 @@ message Experiment {
   google.protobuf.Timestamp end_time = 4;
 }
 
-message ExperimentParams {
+message Experiment {
+  fixed64 id = 1;
 
-  // The experiment configuration specific to the type of experiment
-  google.protobuf.Any config = 2;
-
-  // The time when the experiment should start. If unspecified, defaults to 'now'
-  google.protobuf.Timestamp start_time = 3;
-
-  // The time when the experiment should end, If unspecified, the experiment runs indefinitely.
-  google.protobuf.Timestamp end_time = 4;
+  ExperimentParams params = 2;
 }
 
 message CreateExperimentsRequest {

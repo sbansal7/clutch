@@ -36,6 +36,101 @@ var (
 // define the regex for a UUID once up-front
 var _experimentation_uuidPattern = regexp.MustCompile("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
 
+// Validate checks the field values on ExperimentParams with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *ExperimentParams) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetConfig()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ExperimentParamsValidationError{
+				field:  "Config",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetStartTime()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ExperimentParamsValidationError{
+				field:  "StartTime",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if v, ok := interface{}(m.GetEndTime()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ExperimentParamsValidationError{
+				field:  "EndTime",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ExperimentParamsValidationError is the validation error returned by
+// ExperimentParams.Validate if the designated constraints aren't met.
+type ExperimentParamsValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ExperimentParamsValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ExperimentParamsValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ExperimentParamsValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ExperimentParamsValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ExperimentParamsValidationError) ErrorName() string { return "ExperimentParamsValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ExperimentParamsValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sExperimentParams.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ExperimentParamsValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ExperimentParamsValidationError{}
+
 // Validate checks the field values on Experiment with the rules defined in the
 // proto definition for this message. If any rules are violated, an error is returned.
 func (m *Experiment) Validate() error {
@@ -45,10 +140,10 @@ func (m *Experiment) Validate() error {
 
 	// no validation rules for Id
 
-	if v, ok := interface{}(m.GetConfig()).(interface{ Validate() error }); ok {
+	if v, ok := interface{}(m.GetParams()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
 			return ExperimentValidationError{
-				field:  "Config",
+				field:  "Params",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}

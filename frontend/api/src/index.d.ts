@@ -2314,74 +2314,20 @@ export namespace clutch {
             /** Namespace v1. */
             namespace v1 {
 
-                /** Properties of an ExperimentParams. */
-                interface IExperimentParams {
-
-                    /** ExperimentParams config */
-                    config?: (google.protobuf.IAny|null);
-
-                    /** ExperimentParams startTime */
-                    startTime?: (google.protobuf.ITimestamp|null);
-
-                    /** ExperimentParams endTime */
-                    endTime?: (google.protobuf.ITimestamp|null);
-                }
-
-                /** Represents an ExperimentParams. */
-                class ExperimentParams implements IExperimentParams {
-
-                    /**
-                     * Constructs a new ExperimentParams.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: clutch.chaos.experimentation.v1.IExperimentParams);
-
-                    /** ExperimentParams config. */
-                    public config?: (google.protobuf.IAny|null);
-
-                    /** ExperimentParams startTime. */
-                    public startTime?: (google.protobuf.ITimestamp|null);
-
-                    /** ExperimentParams endTime. */
-                    public endTime?: (google.protobuf.ITimestamp|null);
-
-                    /**
-                     * Verifies an ExperimentParams message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates an ExperimentParams message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns ExperimentParams
-                     */
-                    public static fromObject(object: { [k: string]: any }): clutch.chaos.experimentation.v1.ExperimentParams;
-
-                    /**
-                     * Creates a plain object from an ExperimentParams message. Also converts values to other types if specified.
-                     * @param message ExperimentParams
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: clutch.chaos.experimentation.v1.ExperimentParams, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this ExperimentParams to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
                 /** Properties of an Experiment. */
                 interface IExperiment {
 
                     /** Experiment id */
                     id?: (number|Long|null);
 
-                    /** Experiment params */
-                    params?: (clutch.chaos.experimentation.v1.IExperimentParams|null);
+                    /** Experiment config */
+                    config?: (google.protobuf.IAny|null);
+
+                    /** Experiment startTime */
+                    startTime?: (google.protobuf.ITimestamp|null);
+
+                    /** Experiment endTime */
+                    endTime?: (google.protobuf.ITimestamp|null);
                 }
 
                 /** Represents an Experiment. */
@@ -2396,8 +2342,14 @@ export namespace clutch {
                     /** Experiment id. */
                     public id: (number|Long);
 
-                    /** Experiment params. */
-                    public params?: (clutch.chaos.experimentation.v1.IExperimentParams|null);
+                    /** Experiment config. */
+                    public config?: (google.protobuf.IAny|null);
+
+                    /** Experiment startTime. */
+                    public startTime?: (google.protobuf.ITimestamp|null);
+
+                    /** Experiment endTime. */
+                    public endTime?: (google.protobuf.ITimestamp|null);
 
                     /**
                      * Verifies an Experiment message.
@@ -2431,8 +2383,14 @@ export namespace clutch {
                 /** Properties of a CreateExperimentsRequest. */
                 interface ICreateExperimentsRequest {
 
-                    /** CreateExperimentsRequest experiments */
-                    experiments?: (clutch.chaos.experimentation.v1.IExperimentParams[]|null);
+                    /** CreateExperimentsRequest config */
+                    config?: (google.protobuf.IAny|null);
+
+                    /** CreateExperimentsRequest startTime */
+                    startTime?: (google.protobuf.ITimestamp|null);
+
+                    /** CreateExperimentsRequest endTime */
+                    endTime?: (google.protobuf.ITimestamp|null);
                 }
 
                 /** Represents a CreateExperimentsRequest. */
@@ -2444,8 +2402,14 @@ export namespace clutch {
                      */
                     constructor(properties?: clutch.chaos.experimentation.v1.ICreateExperimentsRequest);
 
-                    /** CreateExperimentsRequest experiments. */
-                    public experiments: clutch.chaos.experimentation.v1.IExperimentParams[];
+                    /** CreateExperimentsRequest config. */
+                    public config?: (google.protobuf.IAny|null);
+
+                    /** CreateExperimentsRequest startTime. */
+                    public startTime?: (google.protobuf.ITimestamp|null);
+
+                    /** CreateExperimentsRequest endTime. */
+                    public endTime?: (google.protobuf.ITimestamp|null);
 
                     /**
                      * Verifies a CreateExperimentsRequest message.
